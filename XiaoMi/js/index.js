@@ -221,26 +221,27 @@ window.onload = function () {
     var more=my$("more");
     //获取图片li
     var carousel_wrapper=my$("carousel_wrapper");
+
     var list=carousel_wrapper.getElementsByTagName("li");
     //获取每个li的宽度
     var liWidth=list[0].offsetWidth+list[0].offsetLeft;
+
     //获取ul
     var ul=carousel_wrapper.firstElementChild;
-    console.log(liWidth);
     var aObjs=more.children;
+    var length=ul.children.length;
     var index=0;
     aObjs[1].onclick=function(){
-        if(4<ul.children.length-index){
+        if(4<length-index){
             index+=4;
         }
-       if(index<ul.children.length){
-           if(ul.children.length-index>=4){
+       if(index<length){
+           if(length-index>=4){
                animate(ul,{"left":-index*liWidth});
            }else{
-               animate(ul,{"left":-(ul.children.length-4)*liWidth});
+               animate(ul,{"left":-(length-4)*liWidth});
                index-=2;
            }
-           console.log(index);
        }
     };
     aObjs[0].onclick=function(){
@@ -251,4 +252,23 @@ window.onload = function () {
             animate(ul,{"left":0});
         }
     };
+
+
+
+    down();
+    setInterval(down,1000);
+    function down() {
+        var date=new Date();
+        var hours=date.getHours();
+        if((hours+1)%2==0){
+            my$("time").innerHTML=((hours+1)<10?"0"+(hours+1):(hours+1))+":00场";
+        }
+        var minutes=date.getMinutes();
+        minutes=minutes<10?"0"+minutes:minutes;
+        my$("minutes").innerHTML=(60-minutes-1)<10?"0"+(60-minutes-1):(60-minutes-1);
+        var seconds=date.getSeconds();
+        my$("seconds").innerHTML=(60-seconds-1)<10?"0"+(60-seconds-1):(60-seconds-1);
+    }
+
+
 };
