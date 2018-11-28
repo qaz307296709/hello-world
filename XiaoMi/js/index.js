@@ -125,14 +125,14 @@ window.onload = function () {
             p1.innerHTML = "购物车中还没有商品，赶紧选购吧！";
             my$("container_right_r_bottom").appendChild(p1);
         }
-        my$("container_right_r_bottom").style.display = "block";
+        animate(my$("container_right_r_bottom"),{"height":100});
 
         my$("gouWuChe").style.color = "#ff6700";
         this.style.backgroundColor = "#fff";
 
     };
     my$("container_right_r").onmouseout = function () {
-        my$("container_right_r_bottom").style.display = "none";
+        animate(my$("container_right_r_bottom"),{"height":0});
         my$("gouWuChe").style.color = "";
         this.style.backgroundColor = "";
     };
