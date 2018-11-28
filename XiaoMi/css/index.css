@@ -1,8 +1,7 @@
 
-* {
+html,body,a,img,div,p,h1,h2,h3,h4,h5,h6,ul,li,ol,dl,dd,dt{
     margin: 0;
     padding: 0;
-    list-style: none;
 }
 
 a {
@@ -13,7 +12,9 @@ html, body {
     width: 100%;
     height: 2000px;
 }
-
+img{
+    border:0;
+}
 .site-topbar {
     width: 100%;
     height: 40px;
@@ -635,6 +636,7 @@ html, body {
 .box .box-md .carousel-wrapper ul{
     position: absolute;
     width: 3000%;
+    left: 0;
 }
 .box .box-md .carousel-wrapper li{
     position: relative;
