@@ -4,7 +4,7 @@ html,body,a,img,div,p,h1,h2,h3,h4,h5,h6,ul,li,ol,dl,dd,dt{
     padding: 0;
 }
 li{
-    list-style:none;
+    list-style: none;
 }
 a {
     text-decoration: none;
@@ -112,10 +112,10 @@ img{
     position: absolute;
     top: 40px;
     left: -196px;
-    display: none;
     width: 316px;
-    height: 100px;
+    height: 0;
     line-height: 100px;
+    overflow: hidden;
     background-color: #fff;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 
