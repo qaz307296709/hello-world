@@ -48,7 +48,10 @@
 
     window.Game=Game;
 }());
-
+window.onload=function(){
+    var game=new Game(document.querySelector(".map"));
+    game.init();
+};
 
 
 /**
