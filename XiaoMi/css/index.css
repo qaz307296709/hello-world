@@ -17,6 +17,7 @@ html, body {
 img{
     border:0;
 }
+/*顶部导航开始*/
 .site-topbar {
     width: 100%;
     height: 40px;
@@ -27,7 +28,12 @@ img{
     width: 1226px;
     margin:0 auto;
 }
-
+.site-topbar {
+    width: 100%;
+    height: 40px;
+    background-color: #333;
+}
+/*顶部左侧导航*/
 .container .container-left {
     float: left;
     position: relative;
@@ -53,7 +59,7 @@ img{
     font-size: 12px;
     color: #424242;
 }
-
+/*小米闪购*/
 .container .container-left .box {
     z-index: 999;
     position: absolute;
@@ -84,7 +90,7 @@ img{
     font-size: 14px;
     color: #333;
 }
-
+/*右侧用户界面*/
 .container .container-right-r {
     position: relative;
     float: right;
@@ -153,48 +159,64 @@ img{
     color: #424242;
     font-size: 12px;
 }
-
+/*顶部导航结束，中间导航开始*/
 .site-header {
+    position: relative;
     height: 100px;
     width: 100%;
+    clear: both;
 
 }
 
 .site-header-in {
-    position: relative;
+    height: 100%;
 }
-
+/*LOGO*/
 .site-header .logo {
-    position: absolute;
-    left: 0;
+    float: left;
     width: 55px;
     height: 55px;
     margin-top: 22px;
     background: url("../images/logo.jpg");
 }
-
+/*中部导航*/
 .site-header .site-header-center {
     float: left;
-    width: 850px;
+    width: auto;
     height: 100%;
-    padding-left: 190px;
-    line-height: 100px;
+    margin-left: 190px;
+    padding-right: 1px;
     box-sizing: border-box;
 }
-
-.site-header .site-header-center li {
+.site-header .site-header-center>ul>li {
     float: left;
-    margin-right: 20px;
+    /*padding-right: 20px;*/
 }
 
-.site-header .site-header-center li a {
+.site-header .site-header-center>ul>li>a {
+    padding-right:20px;
+    display: inline-block;
+    line-height: 100px;
     color: #333;
 }
 
-.site-header .site-header-center li a:hover {
+.site-header .site-header-center>ul>li a:hover {
     color: #ff6700;
 }
+.nav-r-title{
+    float: left;
+    height: 100px;
+    line-height: 100px;
+    padding-right: 20px;
 
+}
+.nav-r-title a{
+    color: #333;
+}
+.nav-r-title a:hover{
+    color:#ff6700;
+}
+/*搜索框*/
 .site-header .site-header-right {
     position: relative;
     float: right;
@@ -259,8 +281,71 @@ img{
     color: #fff;
     background-color: #ff6700;
 }
+/*tab选项卡*/
+.nav-menu{
+    z-index: 9999;
+    position:absolute;
+    width: 100%;
+    top: 99px;
+    left: 0;
+    height: 0px;
+    /*border-top:1px solid #e0e0e0;*/
+    box-shadow: 0 3px 4px rgba(0,0,0,.18);
+    background-color: #fff;
+    overflow: hidden;
+}
+.nav-menu-in{
+    z-index: 999;
+    position:absolute;
+    left: 50%;
+    margin-left:-613px;
+    /*margin:0 auto;*/
+    background-color: #fff;
+}
+ .nav-menu-in li{
+     margin:0;
+    position: relative;
+    float: left;
+    width: 204px;
+    height: 230px;
+    font-size: 12px;
+    text-align: center;
 
+}
+.nav-menu-in .nav-im{
+    margin:35px auto 20px auto;
+    display: block;
+    width: 160px;
+    height: 110px;
+}
+ .nav-menu-in .txt{
+    color:#333;
+}
+ .nav-menu-in p{
+    color:#ff6700;
+}
+ .nav-menu-in .line{
+    position:absolute;
+    /*display: inline-block;*/
+    top: 35px;
+    left: 204px;
+    width: 1px;
+    height: 100px;
+    border-right: 1px solid #e0e0e0;
+}
+ .nav-menu-in .new{
+    position: absolute;
+    top: 0;
+    left: 70px;
+    width: 65px;
+    height: 20px;
+    line-height: 20px;
+    color:#ff6700;
+    border:1px solid #ff6700;
+}
+/*中间主体部分*/
 .home-hero-slider {
+    position: relative;
     height: 460px;
 }
 
@@ -298,7 +383,7 @@ img{
 .home-hero-slider-in .left-right a:hover {
     background-color: #616161;
 }
-
+/*轮播图*/
 .home-hero-slider-in .rotation a {
     display: inline-block;
     position: absolute;
@@ -332,12 +417,12 @@ img{
 .home-hero-slider-in .pager .current {
     background-color: #fff;
 }
-
+/*商品分栏*/
 .home-hero-slider .home-hero-slider-left {
     position: absolute;
     width: 235px;
     height: 100%;
-    padding-top: 20px;
+    padding-top: 18px;
     line-height: 42px;
     box-sizing: border-box;
     background: rgba(0, 0, 0, 0.6);
@@ -347,8 +432,9 @@ img{
     display: inline-block;
     width: 100%;
     height: 42px;
+    font-size:14px;
+    padding: 0 15px 0 25px;
     color: #fff;
-    padding: 0 25px 0 30px;
     box-sizing: border-box;
     transition: all .2s;
 }
@@ -359,9 +445,10 @@ img{
 
 .home-hero-slider .home-hero-slider-left i {
     float: right;
+    font-weight: 600;
     color: rgba(255, 255, 255, 0.5);;
 }
-
+/*右侧固定帮助*/
 .nav-bar {
     position: fixed;
     right: -8px;
