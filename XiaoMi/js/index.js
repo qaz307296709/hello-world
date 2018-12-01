@@ -322,7 +322,7 @@ window.onload = function () {
     function down() {
         var date=new Date();
         var hours=date.getHours();
-            my$("time").innerHTML=((hours+1)<10?"0"+(hours+1):(hours+1))+":00场";
+        my$("time").innerHTML=((hours+1)<10?"0"+(hours+1):(hours+1))+":00场";
         var minutes=date.getMinutes();
         minutes=minutes<10?"0"+minutes:minutes;
         my$("minutes").innerHTML=(60-minutes-1)<10?"0"+(60-minutes-1):(60-minutes-1);
