@@ -6,13 +6,12 @@ function my$(id) {
 function getStyle(element, attr) {
     return window.getComputedStyle ? window.getComputedStyle(element, null)[attr] : element.currentStyle[attr] || 0;
 }
-
+var flag = true;
 function animate(element, json, fn) {
     //清理计时器
     clearInterval(element.timeId);
     //设置定时器
     element.timeId = setInterval(function () {
-        var flag = true;
         //遍历json对象中的数据
         for (var attr in json) {
             //判断属性是否为透明属性
@@ -22,11 +21,17 @@ function animate(element, json, fn) {
                 //目标透明度
                 var target = json[attr] * 100;
                 //设置每次的变化的数值
-                var step = (target - current) / 10;
+                var step = 10;
                 //判断step行走方向
-                step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                step = (target - current) > 0 ? Math.ceil(step) : Math.floor(step);
                 current += step;
-                element.style[attr] = current / 100;
+                if (target - current>= step) {
+                    element.style[attr] = current/100;
+                } else {
+                    // clearInterval(my$("dv").timeId);
+                    current=target;
+                    element.style[attr] = current/100;
+                }
             } else if (attr == "zIndex") {//判断是不是zindex属性
                 element.style[attr] = json[attr];
             } else {
@@ -40,10 +45,18 @@ function animate(element, json, fn) {
                 step = step > 0 ? Math.ceil(step) : Math.floor(step);
                 current += step;
                 element.style[attr] = current + "px";
+                if (Math.abs(target - current) >= Math.abs(step)) {
+                    element.style[attr] = current + "px";
+                } else {
+                    // clearInterval(my$("dv").timeId);
+                    element.style[attr] = target + "px";
+                }
             }
             //判断有没有达到
             if (current != target) {
                 flag = false;
+            }else{
+                flag=true;
             }
         }
         if (flag) {
@@ -106,7 +119,7 @@ function yunsu(element, json, fn) {
                 fn();
             }
         }
-    }, 1);
+    }, 10);
 }
 
 
@@ -137,6 +150,46 @@ window.onload = function () {
         this.style.backgroundColor = "";
     };
 
+    /*选项卡*/
+    //获取导航li
+    var site_header_center=my$("site_header_center");
+    var site_header_center_aObjs=site_header_center.getElementsByClassName("nav-title");
+    //获取导航菜单div
+    var nav_menu=document.getElementsByClassName("nav-menu");
+    var index=0;
+    for(var i=0;i<site_header_center_aObjs.length;i++) {
+        site_header_center_aObjs[i].setAttribute("index", i);
+        site_header_center_aObjs[i].onmouseover = function () {
+            for (var j = 0; j < nav_menu.length; j++) {
+                nav_menu[j].style.display = "none";
+
+            }
+            index = parseInt(this.getAttribute("index"));
+            nav_menu[index].style.display = "block";
+            yunsu(nav_menu[index],{"height":230});
+        };
+    }
+        site_header_center.onmouseover=function() {
+            for (var i = 0; i < site_header_center_aObjs.length; i++) {
+                animate(nav_menu[i], {"height": 230});
+                nav_menu[i].style.borderTop="1px solid #e0e0e0";
+            }
+        };
+    site_header_center.onmouseout=function(){
+        for(var i=0;i<site_header_center_aObjs.length;i++) {
+            yunsu(nav_menu[i],{"height":0});
+            nav_menu[i].style.border="none";
+        }
+    };
+
+
+
+
+
+
+
+
+
     //轮播图
     //获取所有li
     var pager = my$("pager");
@@ -158,18 +211,7 @@ window.onload = function () {
         pic = this.getAttribute("index");
         animate(rotation_Objs[pic], {"opacity": 1})
     }
-    function intervalHandle(){
-        if(pic==4){
-            pic=-1;
-        }
-        pic++;
-        for (var j = 0; j < pager_list.length; j++) {
-            pager_list[j].removeAttribute("class");
-            animate(rotation_Objs[j], {"opacity": 0})
-        }
-        pager_list[pic].className = "current";
-        animate(rotation_Objs[pic], {"opacity": 1});
-    } //定时器
+
 
     //定时播放
     var timeId=setInterval(intervalHandle,2500);
@@ -189,20 +231,40 @@ window.onload = function () {
     //获取右焦点
     var left_right_right = my$("left_right").getElementsByTagName("a")[1];
     left_right_left.onclick = function () {
-        if (pic == 0) {
-            pic = 5;
-        }
-        pic--;
-        for (var j = 0; j < pager_list.length; j++) {
-            pager_list[j].removeAttribute("class");
-            animate(rotation_Objs[j], {"opacity": 0})
-        }
-        pager_list[pic].className = "current";
-        animate(rotation_Objs[pic], {"opacity": 1});
+        if(flag){
 
-        return false;
+            if (pic == 0) {
+                pic = 5;
+            }
+            pic--;
+            for (var j = 0; j < pager_list.length; j++) {
+                pager_list[j].removeAttribute("class");
+                animate(rotation_Objs[j], {"opacity": 0})
+            }
+            pager_list[pic].className = "current";
+            animate(rotation_Objs[pic], {"opacity": 1});
+            return false;
+        }
     };
     left_right_right.onclick = intervalHandle;
+    function intervalHandle(){
+        if(flag){
+            if(pic==4){
+                pic=-1;
+            }
+            pic++;
+            for (var j = 0; j < pager_list.length; j++) {
+                pager_list[j].removeAttribute("class");
+                animate(rotation_Objs[j], {"opacity": 0})
+            }
+            pager_list[pic].className = "current";
+            animate(rotation_Objs[pic], {"opacity": 1});
+        }
+     }
+
+
+
+
 
     var nav_bar_list=my$("nav_bar").getElementsByTagName("li");
     var nav_bar_span=my$("nav_bar_span");
