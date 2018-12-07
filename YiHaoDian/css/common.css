@@ -1,0 +1,72 @@
+@charset "utf-8";
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td {
+    margin: 0;
+    padding: 0;
+    font:12px "Microsoft YaHei",Helvetica Neue,tahoma,Arial,Verdana,"Hiragino Sans GB","\5b8b\4f53";
+}
+html,
+body{
+    width: 100%;
+    height: 4000px;
+    background-color: #f5f5f5;
+    overflow-x: hidden;
+}
+fieldset, img {
+    border: 0;
+    vertical-align: top;
+}
+
+ul, ol, li {
+    list-style: none;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+    font-weight: normal;
+}
+
+a {
+
+    color:#333;
+    text-decoration: none;
+}
+
+/*清除浮动*/
+.clearfix {
+    clear: both;
+    *zoom: 1;
+}
+
+.clearfix:after {
+    display: block;
+    clear: both;
+    content: "";
+    visibility: hidden;
+    height: 0;
+}
+
+@font-face {
+    font-family: 'iconfont';
+    src: url('../font_953362_l9r5qzw8xx/iconfont.eot');
+    src: url('../font_953362_l9r5qzw8xx/iconfont.eot?#iefix') format('embedded-opentype'),
+    url('../font_953362_l9r5qzw8xx/iconfont.woff') format('woff'),
+    url('../font_953362_l9r5qzw8xx/iconfont.ttf') format('truetype'),
+    url('../font_953362_l9r5qzw8xx/iconfont.svg#iconfont') format('svg');
+}
+.iconfont{
+    font-family:"iconfont" !important;
+    font-size:14px;font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+em,i{
+    font-style: normal;
+}
+.ff{
+    color:#ff4040;
+}
+.b1{
+    color:#b1aaaa;
+}
